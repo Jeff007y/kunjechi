@@ -38,7 +38,7 @@ export function Achievements() {
         viewport={{ once: true }}
         className="text-4xl md:text-5xl font-serif mb-16 z-20 text-center"
       >
-        Achievements
+        Achievements & Awards
       </motion.h2>
 
       <div className="relative w-full max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-16 md:gap-32 h-full z-10">
@@ -61,12 +61,12 @@ export function Achievements() {
                       rotateY: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 },
                       y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }
                     }}
-                    className="relative w-48 md:w-56 transform-style-3d group-hover:scale-105 transition-transform duration-500"
+                    className="relative w-72 md:w-[24rem] transform-style-3d group-hover:scale-105 transition-transform duration-500"
                   >
                     {/* Floating Glass Plaque */}
-                    <div className="relative bg-white/5 backdrop-blur-md border border-white/20 rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.05)] overflow-hidden flex flex-col justify-end">
-                       <img src={item.src} alt={item.title} className="w-full h-auto object-contain opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 block" referrerPolicy="no-referrer" />
-                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+                    <div className="relative bg-white/5 backdrop-blur-md border border-white/20 rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.05)] overflow-hidden flex flex-col justify-end aspect-square md:aspect-[4/5]">
+                       <img src={item.src} alt={item.title} className="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700 block" referrerPolicy="no-referrer" />
+                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent pointer-events-none" />
                        <div className="absolute bottom-4 left-0 right-0 z-10 flex flex-col items-center px-4">
                          <item.icon className={`w-8 h-8 mb-2 bg-gradient-to-br ${item.color} bg-clip-text text-transparent drop-shadow-lg`} />
                          <div className="text-center font-serif text-lg leading-tight text-white drop-shadow-md">{item.title}</div>
@@ -100,7 +100,7 @@ export function Achievements() {
                 <motion.div
                   layoutId={`award-${item.id}`}
                   key={`detail-${item.id}`}
-                  className="relative w-full max-w-3xl bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2rem] p-8 md:p-12 shadow-[0_0_60px_rgba(255,255,255,0.1)] flex flex-col md:flex-row gap-8 items-center"
+                  className="relative w-full max-w-6xl bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2rem] p-8 md:p-12 shadow-[0_0_60px_rgba(255,255,255,0.1)] flex flex-col md:flex-row gap-8 items-center"
                 >
                   <button 
                     onClick={() => setActiveId(null)}
@@ -109,11 +109,11 @@ export function Achievements() {
                     <X className="w-5 h-5 text-white/80" />
                   </button>
 
-                  <div className="w-full md:w-1/2 flex-shrink-0">
+                  <div className="w-full md:w-3/5 flex-shrink-0">
                     <ImagePlaceholder src={item.src} label={`Photo — ${item.title}`} className="w-full" />
                   </div>
 
-                  <div className="w-full md:w-1/2 flex flex-col">
+                  <div className="w-full md:w-2/5 flex flex-col">
                     <item.icon className="w-10 h-10 text-white/50 mb-6" />
                     <h3 className="text-3xl md:text-4xl font-serif mb-4 leading-tight">{item.title}</h3>
                     <p className="text-white/60 font-sans leading-relaxed">

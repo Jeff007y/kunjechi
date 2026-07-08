@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import React from 'react';
+import { motion } from 'motion/react';
 import { ImagePlaceholder } from './ImagePlaceholder';
+import { GraduationCap } from 'lucide-react';
 
 const education = [
   { level: '10th', institution: 'St. Thomas AUP School, Mullenkolly', src: 'https://lh3.googleusercontent.com/d/1pI-EFKAmNraGPjZeVBINJV7rb7r1xOo8' },
@@ -11,69 +12,76 @@ const education = [
 ];
 
 export function Education() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end']
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', 'calc(-100% + 100vw)']);
-
   return (
-    <section 
-      ref={containerRef} 
-      className="relative h-[250vh] bg-gradient-to-br from-indigo-50/50 to-purple-50/50"
-    >
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center">
-        <div className="absolute top-24 left-12 md:left-24 z-20">
-          <motion.h2 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-serif text-slate-800"
-          >
+    <section className="relative w-full py-32 bg-slate-50 overflow-hidden">
+      {/* Subtle Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50" />
+        <div className="absolute top-1/2 -right-24 w-[40rem] h-[40rem] bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50" />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-24"
+        >
+          <div className="inline-flex items-center justify-center p-3 mb-6 bg-indigo-50 text-indigo-500 rounded-2xl shadow-sm border border-indigo-100">
+            <GraduationCap className="w-8 h-8" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-serif text-slate-800">
             Educational Journey
-          </motion.h2>
-        </div>
-
-        {/* The horizontal scrolling track */}
-        <motion.div style={{ x }} className="flex w-max relative pl-[10vw] md:pl-[20vw] pr-[10vw] md:pr-[20vw] pt-20" ref={scrollContainerRef}>
-          
-          {/* Continuous Glowing Path */}
-          <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-indigo-300 to-indigo-100 shadow-[0_0_20px_rgba(167,139,250,0.6)] -translate-y-1/2" />
-          
-          <motion.div 
-            style={{ 
-              scaleX: scrollYProgress, 
-              originX: 0 
-            }}
-            className="absolute top-1/2 left-0 w-full h-[4px] bg-gradient-to-r from-indigo-400 to-purple-400 shadow-[0_0_30px_rgba(167,139,250,0.8)] -translate-y-1/2 z-10"
-          />
-
-          {education.map((item, i) => (
-            <div key={item.level} className="relative flex-shrink-0 w-[80vw] md:w-[40vw] flex flex-col items-center justify-center">
-              
-              {/* Milestone Node */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white border-4 border-indigo-400 shadow-[0_0_15px_rgba(167,139,250,0.5)] z-20" />
-
-              <div className={`w-full max-w-[280px] md:max-w-[320px] transition-all duration-700 hover:-translate-y-2 ${i % 2 === 0 ? 'mb-24 md:mb-32' : 'mt-24 md:mt-32'}`}>
-                <div className="glass-panel p-4 rounded-3xl group">
-                  <ImagePlaceholder 
-                    src={item.src}
-                    label={`Photo — ${item.level}`} 
-                    className="w-full mb-4 rounded-xl group-hover:shadow-lg transition-shadow duration-300"
-                  />
-                  <div className="text-center px-2 pb-2">
-                    <h3 className="text-xl font-serif text-indigo-900 mb-1">{item.level}</h3>
-                    <p className="text-sm font-sans text-slate-600 line-clamp-2">{item.institution}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+          </h2>
         </motion.div>
+
+        <div className="relative">
+          {/* Central Line */}
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-indigo-200/50 -translate-x-1/2" />
+
+          <div className="flex flex-col gap-16 md:gap-24">
+            {education.map((item, index) => {
+              const isEven = index % 2 === 0;
+              return (
+                <div key={item.level} className="relative flex flex-col md:flex-row items-center w-full">
+                  
+                  {/* Timeline Dot */}
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.2 }}
+                    className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow-md -translate-x-1/2 z-20"
+                  />
+
+                  {/* Content Card (Desktop: alternating left/right, Mobile: right) */}
+                  <div className={`w-full md:w-1/2 pl-20 md:pl-0 ${isEven ? 'md:pr-16 md:text-right flex md:justify-end' : 'md:pl-16 md:ml-auto flex md:justify-start'}`}>
+                    <motion.div 
+                      initial={{ opacity: 0, x: isEven ? -30 : 30, y: 20 }}
+                      whileInView={{ opacity: 1, x: 0, y: 0 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.7, ease: "easeOut" }}
+                      className="group w-full max-w-[400px]"
+                    >
+                      <div className="bg-white p-6 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1">
+                        <div className="overflow-hidden rounded-2xl mb-6">
+                          <ImagePlaceholder 
+                            src={item.src}
+                            label={`Photo — ${item.level}`} 
+                            className="w-full aspect-video md:aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                        </div>
+                        <h3 className="text-2xl font-serif text-slate-800 mb-2">{item.level}</h3>
+                        <p className="text-slate-500 font-sans leading-relaxed">{item.institution}</p>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -40,12 +40,12 @@ export function AboutMe() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full flex flex-col items-center justify-center py-20 bg-pearl overflow-hidden">
-      <h2 ref={textRef} className="text-4xl md:text-6xl font-serif font-medium text-slate-800 mb-16 z-10">
+    <section ref={containerRef} className="relative w-full flex flex-col items-center justify-center py-12 md:py-16 bg-pearl overflow-hidden">
+      <h2 ref={textRef} className="text-4xl md:text-6xl font-serif font-medium text-slate-800 mb-4 md:mb-8 z-10">
         Who am I?
       </h2>
 
-      <div className="relative w-full max-w-2xl aspect-square flex items-center justify-center">
+      <div className="relative w-full max-w-[20rem] sm:max-w-md md:max-w-lg aspect-square flex items-center justify-center my-4 md:-my-8">
         {/* Center Portrait */}
         <motion.div 
           className="relative z-20 w-48 h-48 md:w-64 md:h-64 rounded-full"
@@ -63,7 +63,7 @@ export function AboutMe() {
         >
           {keywords.map((word, i) => {
             const angle = (i * 360) / keywords.length;
-            const radius = '38%'; // Responsive radius
+            const radius = '45%'; // Responsive radius
             return (
               <div
                 key={word}

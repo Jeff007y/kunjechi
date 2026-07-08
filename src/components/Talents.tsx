@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mic, Headphones, X } from 'lucide-react';
+import { Mic, HeartHandshake, X } from 'lucide-react';
 
 const talents = [
   {
@@ -15,10 +15,10 @@ const talents = [
   {
     id: 'listening',
     title: 'Listening',
-    icon: Headphones,
+    icon: HeartHandshake,
     color: 'from-blue-100 to-blue-50',
     blobColor: 'bg-blue-200',
-    description: 'Absorbing the world\'s symphony, from quiet whispers to grand orchestrations.',
+    description: 'Always here to listen to people, understand their problems, and offer a comforting presence.',
     particleType: 'particle'
   }
 ];
