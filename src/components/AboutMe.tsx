@@ -52,7 +52,7 @@ export function AboutMe() {
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.5, type: "spring" }}
         >
-          <ImagePlaceholder src="https://lh3.googleusercontent.com/d/1vLPQkRIq6pMurd_KiKATDvXIsm-ryp1u" label="Keerthana Sunil" circular className="w-full h-full shadow-2xl" />
+          <ImagePlaceholder src="https://lh3.googleusercontent.com/d/1UeaGB69EEQGnfkWtyPpxY9jXCwWJhHuw" label="Keerthana Sunil" circular className="w-full h-full shadow-2xl" />
         </motion.div>
 
         {/* Orbiting Keywords */}
