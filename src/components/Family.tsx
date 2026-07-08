@@ -1,0 +1,89 @@
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { ImagePlaceholder } from './ImagePlaceholder';
+
+const family = [
+  { name: 'Acha', role: 'Father', src: 'https://drive.google.com/uc?export=view&id=1vEPE5qNTsOP8Ew1KLYrL2wK7gP5WE6UI' },
+  { name: 'Amma', role: 'Mother', src: 'https://drive.google.com/uc?export=view&id=1vEPE5qNTsOP8Ew1KLYrL2wK7gP5WE6UI' },
+  { name: 'Sister (Nandhu)', role: 'Sibling', src: 'https://drive.google.com/uc?export=view&id=1yKMe2nWJWWYy4WYmjDJmNo5e3H4CEyPa' }
+];
+
+export function Family() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start']
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+
+  return (
+    <section 
+      ref={containerRef} 
+      className="relative min-h-screen w-full flex flex-col items-center justify-center py-32 overflow-hidden bg-gradient-to-b from-pearl via-amber-50/50 to-orange-50/30"
+    >
+      <motion.div 
+        style={{ y: backgroundY }}
+        className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,rgba(253,230,138,0.2)_0%,transparent_60%)]"
+      />
+
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 text-center">
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="text-4xl md:text-5xl font-serif text-slate-800 mb-24"
+        >
+          The People Behind My Journey
+        </motion.h2>
+
+        <div className="relative flex flex-col md:flex-row items-center justify-center gap-16 md:gap-8 lg:gap-24">
+          {/* Glowing connecting line - desktop */}
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, delay: 0.5, ease: "easeInOut" }}
+            className="hidden md:block absolute top-1/2 left-24 right-24 h-[1px] bg-gradient-to-r from-transparent via-amber-300 to-transparent shadow-[0_0_15px_rgba(253,230,138,0.8)] origin-left -translate-y-1/2"
+          />
+          {/* Glowing connecting line - mobile */}
+          <motion.div 
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, delay: 0.5, ease: "easeInOut" }}
+            className="md:hidden absolute top-24 bottom-24 left-1/2 w-[1px] bg-gradient-to-b from-transparent via-amber-300 to-transparent shadow-[0_0_15px_rgba(253,230,138,0.8)] origin-top -translate-x-1/2"
+          />
+
+          {family.map((member, i) => (
+            <motion.div
+              key={member.name}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.2 + i * 0.2 }}
+              className="relative group z-10"
+            >
+              <div className="relative p-2 transition-transform duration-500 group-hover:scale-105">
+                {/* Hover Glow */}
+                <div className="absolute inset-0 bg-amber-200/0 rounded-2xl blur-xl transition-colors duration-500 group-hover:bg-amber-300/40" />
+                
+                <ImagePlaceholder 
+                  src={member.src}
+                  label={`Photo — ${member.name}`} 
+                  className="w-48 h-64 md:w-56 md:h-72 lg:w-64 lg:h-80 shadow-xl border-white/60 transition-all duration-500 group-hover:border-amber-200/80" 
+                />
+              </div>
+              
+              <div className="mt-6 text-center">
+                <h3 className="text-xl font-serif text-slate-800">{member.name}</h3>
+                <p className="text-sm font-sans text-slate-500 tracking-widest uppercase mt-1">{member.role}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
