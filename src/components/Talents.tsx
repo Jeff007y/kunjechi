@@ -59,9 +59,16 @@ export function Talents() {
                   transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
                   className="relative group"
                 >
-                  <div className={`w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-tr ${talent.color} shadow-2xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110`}>
-                    <talent.icon className="w-12 h-12 text-slate-700/50" />
-                    <div className="absolute inset-0 rounded-full border border-white/60 shadow-[inset_0_0_20px_rgba(255,255,255,0.8)] pointer-events-none" />
+                  <div className={`w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-tr ${talent.color} shadow-2xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110 relative overflow-hidden`}>
+                    {talent.src ? (
+                      <img src={talent.src} alt={talent.title} className="absolute inset-0 w-full h-full object-cover opacity-90 mix-blend-overlay" referrerPolicy="no-referrer" />
+                    ) : null}
+                    {talent.src ? (
+                       <img src={talent.src} alt={talent.title} className="absolute inset-0 w-full h-full object-cover z-10" referrerPolicy="no-referrer" />
+                    ) : (
+                      <talent.icon className="w-12 h-12 text-slate-700/50 z-10" />
+                    )}
+                    <div className="absolute inset-0 rounded-full border-4 border-white/60 shadow-[inset_0_0_20px_rgba(255,255,255,0.8)] pointer-events-none z-20" />
                   </div>
                   <h3 className="absolute -bottom-10 left-1/2 -translate-x-1/2 font-sans font-medium text-lg text-slate-600 tracking-wide">
                     {talent.title}
