@@ -10,7 +10,8 @@ const talents = [
     color: 'from-rose-100 to-rose-50',
     blobColor: 'bg-rose-200',
     description: 'Finding rhythm in every moment and expressing emotions through melodies.',
-    particleType: 'wave'
+    particleType: 'wave',
+    src: 'https://lh3.googleusercontent.com/d/1-zk40z0muXsP4hzutBbgFtumkQZ_mwRe'
   },
   {
     id: 'listening',
@@ -128,7 +129,16 @@ export function Talents() {
                   )}
 
                   <div className="relative z-10 flex flex-col items-center text-center">
-                    <talent.icon className="w-16 h-16 text-slate-700 mb-6" />
+                    {talent.src ? (
+                      <div className="w-32 h-32 md:w-48 md:h-48 mb-6 relative">
+                        <img src={talent.src} alt={talent.title} className="w-full h-full object-cover rounded-full shadow-lg border-4 border-white/50" referrerPolicy="no-referrer" />
+                        <div className="absolute -bottom-2 -right-2 p-3 bg-white/80 backdrop-blur-sm rounded-full shadow-md">
+                           <talent.icon className="w-6 h-6 text-slate-700" />
+                        </div>
+                      </div>
+                    ) : (
+                      <talent.icon className="w-16 h-16 text-slate-700 mb-6" />
+                    )}
                     <h3 className="text-4xl font-serif text-slate-800 mb-4">{talent.title}</h3>
                     <p className="text-lg text-slate-600 font-sans leading-relaxed max-w-md">
                       {talent.description}

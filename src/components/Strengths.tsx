@@ -7,7 +7,7 @@ const strengths = [
   {
     title: 'Teaching',
     icon: BookOpen,
-    description: 'Guiding minds, sharing knowledge, and illuminating paths to discovery.',
+    description: 'Guiding minds, sharing knowledge and illuminating paths to discovery.',
     bg: 'bg-gradient-to-br from-blue-50 to-indigo-50',
     accent: 'from-blue-400 to-indigo-500',
     shadow: 'shadow-blue-900/10',
