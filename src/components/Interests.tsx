@@ -89,7 +89,7 @@ export function Interests() {
           viewport={{ once: true }}
           className="text-4xl md:text-6xl font-serif mb-12 tracking-tight"
         >
-          I Love Listening to Music
+          I Love Listening Music
         </motion.h2>
 
         {/* Audio Wave Visualizer Simulation */}
