@@ -24,11 +24,13 @@ const strengths = [
   {
     title: 'Singing',
     icon: Mic2,
-    description: 'Expressing the soul, connecting through melody, and creating resonance.',
+    description: 'Expressing the soul, connecting through melody and creating resonance.',
     bg: 'bg-gradient-to-br from-rose-50 to-orange-50',
     accent: 'from-rose-400 to-orange-400',
     shadow: 'shadow-rose-900/10',
-    images: []
+    images: [
+      'https://lh3.googleusercontent.com/d/1-zk40z0muXsP4hzutBbgFtumkQZ_mwRe'
+    ]
   }
 ];
 
