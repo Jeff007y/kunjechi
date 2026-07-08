@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mic, HeartHandshake, X } from 'lucide-react';
+import { Mic, HeartHandshake, X, Headphones } from 'lucide-react';
 
 const talents = [
   {
     id: 'singing',
     title: 'Singing',
-    icon: Mic,
+    icon: Headphones,
     color: 'from-rose-100 to-rose-50',
     blobColor: 'bg-rose-200',
     description: 'Finding rhythm in every moment and expressing emotions through melodies.',
-    particleType: 'wave',
-    src: 'https://lh3.googleusercontent.com/d/1-zk40z0muXsP4hzutBbgFtumkQZ_mwRe'
+    particleType: 'wave'
   },
   {
     id: 'listening',
