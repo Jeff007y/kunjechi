@@ -54,7 +54,7 @@ export function Hero() {
           
           <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-tr from-indigo-100 to-purple-100 p-1">
             <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
-              <img src="https://drive.google.com/uc?export=view&id=1vLPQkRIq6pMurd_KiKATDvXIsm-ryp1u" alt="Keerthana Sunil" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="https://lh3.googleusercontent.com/d/1vLPQkRIq6pMurd_KiKATDvXIsm-ryp1u" alt="Keerthana Sunil" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </div>
           </div>
         </motion.div>

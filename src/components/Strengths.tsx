@@ -12,13 +12,13 @@ const strengths = [
     accent: 'from-blue-400 to-indigo-500',
     shadow: 'shadow-blue-900/10',
     images: [
-      'https://drive.google.com/uc?export=view&id=1YKM67DttR-Lstqkx7DghIU9mi2Q7B7dk',
-      'https://drive.google.com/uc?export=view&id=1-d9fXDgz9rTEprnYr6RzotZn1JsjTxtM',
-      'https://drive.google.com/uc?export=view&id=1DaIOEgSwlKIIS-AyzK9dgTvb2aTUGOHh',
-      'https://drive.google.com/uc?export=view&id=1cvVivHxYXKlG5w3rpyr8-6KT-GtFiuQ-',
-      'https://drive.google.com/uc?export=view&id=1PIySDw_kTpp3w-sH1PdTi0Vx11zj3M88',
-      'https://drive.google.com/uc?export=view&id=1nJ4nIxc8j_Bxxk_-qyHIlkhw26l1f-0N',
-      'https://drive.google.com/uc?export=view&id=1ZxmKywxi2YzryyR5qPN6FiSqJ3rPYOzU'
+      'https://lh3.googleusercontent.com/d/1YKM67DttR-Lstqkx7DghIU9mi2Q7B7dk',
+      'https://lh3.googleusercontent.com/d/1-d9fXDgz9rTEprnYr6RzotZn1JsjTxtM',
+      'https://lh3.googleusercontent.com/d/1DaIOEgSwlKIIS-AyzK9dgTvb2aTUGOHh',
+      'https://lh3.googleusercontent.com/d/1cvVivHxYXKlG5w3rpyr8-6KT-GtFiuQ-',
+      'https://lh3.googleusercontent.com/d/1PIySDw_kTpp3w-sH1PdTi0Vx11zj3M88',
+      'https://lh3.googleusercontent.com/d/1nJ4nIxc8j_Bxxk_-qyHIlkhw26l1f-0N',
+      'https://lh3.googleusercontent.com/d/1ZxmKywxi2YzryyR5qPN6FiSqJ3rPYOzU'
     ]
   },
   {
@@ -51,13 +51,13 @@ export function Strengths() {
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col items-center justify-center py-32 bg-pearl overflow-hidden perspective-1000">
+    <section className="relative w-full flex flex-col items-center justify-center py-24 bg-pearl overflow-hidden perspective-1000">
       
       <motion.h2 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-4xl md:text-5xl font-serif text-slate-800 mb-20 text-center"
+        className="text-4xl md:text-5xl font-serif text-slate-800 mb-16 text-center"
       >
         What I'm Good At
       </motion.h2>
@@ -78,7 +78,7 @@ export function Strengths() {
 
             {/* Fading Image Background for categories with images */}
             {item.images && item.images.length > 0 && (
-              <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-30 transition-opacity duration-700">
+              <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-40 transition-opacity duration-700">
                  <AnimatePresence mode="wait">
                    <motion.img 
                      key={activeImageIndex[item.title]}
@@ -87,11 +87,11 @@ export function Strengths() {
                      animate={{ opacity: 1 }}
                      exit={{ opacity: 0 }}
                      transition={{ duration: 1 }}
-                     className="w-full h-full object-cover rounded-[2.5rem]"
+                     className="w-full h-full object-contain rounded-[2.5rem]"
                      referrerPolicy="no-referrer"
                    />
                  </AnimatePresence>
-                 <div className="absolute inset-0 bg-white/60 backdrop-blur-sm" />
+                 <div className="absolute inset-0 bg-white/40 backdrop-blur-sm" />
               </div>
             )}
 
@@ -101,18 +101,18 @@ export function Strengths() {
                   <item.icon className="w-10 h-10 text-slate-700" />
                 </div>
                 
-                {/* Mini Image Preview */}
+                {/* Image Preview */}
                 {item.images && item.images.length > 0 && (
-                  <div className="w-24 h-24 rounded-2xl overflow-hidden border border-white/50 shadow-lg transform rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                  <div className="relative w-48 md:w-64 lg:w-80 shrink-0 ml-4 perspective-1000">
                     <AnimatePresence mode="wait">
                        <motion.img 
                          key={activeImageIndex[item.title]}
                          src={item.images[activeImageIndex[item.title]]}
-                         initial={{ opacity: 0, scale: 1.1 }}
-                         animate={{ opacity: 1, scale: 1 }}
-                         exit={{ opacity: 0 }}
+                         initial={{ opacity: 0, rotateY: 10, scale: 0.95 }}
+                         animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+                         exit={{ opacity: 0, rotateY: -10, scale: 0.95 }}
                          transition={{ duration: 0.8 }}
-                         className="w-full h-full object-cover"
+                         className="w-full h-auto object-contain drop-shadow-2xl rounded-xl block"
                          referrerPolicy="no-referrer"
                        />
                      </AnimatePresence>

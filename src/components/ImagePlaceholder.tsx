@@ -13,13 +13,13 @@ export function ImagePlaceholder({ label, className = '', circular = false, src 
     return (
       <div
         className={`relative flex items-center justify-center bg-white/20 backdrop-blur-md border border-white/40 overflow-hidden ${
-          circular ? 'rounded-full' : 'rounded-2xl'
+          circular ? 'rounded-full aspect-square' : 'rounded-2xl'
         } ${className}`}
       >
         <img 
           src={src} 
           alt={label} 
-          className="w-full h-full object-cover" 
+          className={`w-full ${circular ? 'h-full object-cover' : 'h-auto object-contain block'}`} 
           referrerPolicy="no-referrer"
         />
       </div>
@@ -29,7 +29,7 @@ export function ImagePlaceholder({ label, className = '', circular = false, src 
   return (
     <div
       className={`relative flex items-center justify-center bg-white/20 backdrop-blur-md border border-white/40 overflow-hidden ${
-        circular ? 'rounded-full' : 'rounded-2xl'
+        circular ? 'rounded-full aspect-square' : 'rounded-2xl'
       } ${className}`}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/30 to-purple-50/30 pointer-events-none" />

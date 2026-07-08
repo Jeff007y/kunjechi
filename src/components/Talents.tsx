@@ -27,12 +27,12 @@ export function Talents() {
   const [activeTalent, setActiveTalent] = useState<string | null>(null);
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col items-center justify-center py-32 bg-pearl overflow-hidden">
+    <section className="relative w-full flex flex-col items-center justify-center py-24 bg-pearl overflow-hidden">
       <motion.h2 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-4xl md:text-5xl font-serif text-slate-800 mb-20 text-center relative z-20"
+        className="text-4xl md:text-5xl font-serif text-slate-800 mb-16 text-center relative z-20"
       >
         My Talents
       </motion.h2>

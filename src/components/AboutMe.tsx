@@ -40,8 +40,8 @@ export function AboutMe() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen w-full flex flex-col items-center justify-center py-24 bg-pearl overflow-hidden">
-      <h2 ref={textRef} className="text-4xl md:text-6xl font-serif font-medium text-slate-800 mb-20 z-10">
+    <section ref={containerRef} className="relative w-full flex flex-col items-center justify-center py-20 bg-pearl overflow-hidden">
+      <h2 ref={textRef} className="text-4xl md:text-6xl font-serif font-medium text-slate-800 mb-16 z-10">
         Who am I?
       </h2>
 
@@ -52,7 +52,7 @@ export function AboutMe() {
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.5, type: "spring" }}
         >
-          <ImagePlaceholder src="https://drive.google.com/uc?export=view&id=1vLPQkRIq6pMurd_KiKATDvXIsm-ryp1u" label="Keerthana Sunil" circular className="w-full h-full shadow-2xl" />
+          <ImagePlaceholder src="https://lh3.googleusercontent.com/d/1vLPQkRIq6pMurd_KiKATDvXIsm-ryp1u" label="Keerthana Sunil" circular className="w-full h-full shadow-2xl" />
         </motion.div>
 
         {/* Orbiting Keywords */}

@@ -19,7 +19,7 @@ export function Dream() {
   }, [scrollYProgress, showName]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[150vh] bg-dark-bg text-white overflow-hidden flex flex-col items-center justify-center">
+    <section ref={containerRef} className="relative min-h-[120vh] bg-dark-bg text-white overflow-hidden flex flex-col items-center justify-center">
       
       {/* Starry Background */}
       <div className="absolute inset-0 pointer-events-none">

@@ -4,7 +4,7 @@ import { ImagePlaceholder } from './ImagePlaceholder';
 
 export function Footer() {
   return (
-    <section className="relative min-h-[90vh] w-full flex flex-col items-center justify-center py-24 bg-dark-bg text-white overflow-hidden">
+    <section className="relative min-h-[70vh] w-full flex flex-col items-center justify-center py-24 bg-dark-bg text-white overflow-hidden">
       
       {/* Soft spotlight */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.1)_0%,transparent_60%)] pointer-events-none" />
@@ -19,7 +19,7 @@ export function Footer() {
         <div className="mb-12 relative group cursor-pointer">
           <div className="absolute inset-0 rounded-full bg-white/20 blur-2xl group-hover:bg-white/30 transition-colors duration-700" />
           <ImagePlaceholder 
-            src="https://drive.google.com/uc?export=view&id=1vLPQkRIq6pMurd_KiKATDvXIsm-ryp1u"
+            src="https://lh3.googleusercontent.com/d/1vLPQkRIq6pMurd_KiKATDvXIsm-ryp1u"
             label="Keerthana Sunil" 
             circular 
             className="w-32 h-32 md:w-40 md:h-40 border-white/10 relative z-10" 

@@ -4,6 +4,7 @@
  */
 
 import React, { useEffect, useRef } from 'react';
+import { motion, useScroll } from 'motion/react';
 import Lenis from 'lenis';
 import { Hero } from './components/Hero';
 import { AboutMe } from './components/AboutMe';
@@ -17,8 +18,23 @@ import { Strengths } from './components/Strengths';
 import { Footer } from './components/Footer';
 import { ParticleBackground } from './components/ParticleBackground';
 
+function FadeInSection({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="w-full"
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 export default function App() {
   const lenisRef = useRef<Lenis | null>(null);
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     // Initialize Lenis for smooth scroll
@@ -48,18 +64,40 @@ export default function App() {
 
   return (
     <div className="bg-pearl font-sans text-slate-900 selection:bg-indigo-200 selection:text-indigo-900 overflow-hidden relative">
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-rose-500 origin-left z-[100]"
+        style={{ scaleX: scrollYProgress }}
+      />
       <ParticleBackground />
       <main className="flex flex-col relative z-10">
         <Hero />
-        <AboutMe />
-        <Family />
-        <Talents />
-        <Education />
-        <Achievements />
-        <Dream />
-        <Interests />
-        <Strengths />
-        <Footer />
+        <FadeInSection>
+          <AboutMe />
+        </FadeInSection>
+        <FadeInSection>
+          <Family />
+        </FadeInSection>
+        <FadeInSection>
+          <Talents />
+        </FadeInSection>
+        <FadeInSection>
+          <Education />
+        </FadeInSection>
+        <FadeInSection>
+          <Achievements />
+        </FadeInSection>
+        <FadeInSection>
+          <Dream />
+        </FadeInSection>
+        <FadeInSection>
+          <Interests />
+        </FadeInSection>
+        <FadeInSection>
+          <Strengths />
+        </FadeInSection>
+        <FadeInSection>
+          <Footer />
+        </FadeInSection>
       </main>
     </div>
   );

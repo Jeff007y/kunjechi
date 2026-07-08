@@ -3,9 +3,8 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { ImagePlaceholder } from './ImagePlaceholder';
 
 const family = [
-  { name: 'Acha', role: 'Father', src: 'https://drive.google.com/uc?export=view&id=1vEPE5qNTsOP8Ew1KLYrL2wK7gP5WE6UI' },
-  { name: 'Amma', role: 'Mother', src: 'https://drive.google.com/uc?export=view&id=1vEPE5qNTsOP8Ew1KLYrL2wK7gP5WE6UI' },
-  { name: 'Sister (Nandhu)', role: 'Sibling', src: 'https://drive.google.com/uc?export=view&id=1yKMe2nWJWWYy4WYmjDJmNo5e3H4CEyPa' }
+  { name: 'Acha & Amma', role: 'Parents', src: 'https://lh3.googleusercontent.com/d/1YN4p3Vbzu_eAboAXCf90HlgQBPKKNUau' },
+  { name: 'Nandhu', role: 'Sister', src: 'https://lh3.googleusercontent.com/d/1yKMe2nWJWWYy4WYmjDJmNo5e3H4CEyPa' }
 ];
 
 export function Family() {
@@ -20,7 +19,7 @@ export function Family() {
   return (
     <section 
       ref={containerRef} 
-      className="relative min-h-screen w-full flex flex-col items-center justify-center py-32 overflow-hidden bg-gradient-to-b from-pearl via-amber-50/50 to-orange-50/30"
+      className="relative min-h-screen w-full flex flex-col items-center justify-center py-24 overflow-hidden bg-gradient-to-b from-pearl via-amber-50/50 to-orange-50/30"
     >
       <motion.div 
         style={{ y: backgroundY }}
@@ -33,7 +32,7 @@ export function Family() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="text-4xl md:text-5xl font-serif text-slate-800 mb-24"
+          className="text-4xl md:text-5xl font-serif text-slate-800 mb-16"
         >
           The People Behind My Journey
         </motion.h2>
@@ -72,7 +71,7 @@ export function Family() {
                 <ImagePlaceholder 
                   src={member.src}
                   label={`Photo — ${member.name}`} 
-                  className="w-48 h-64 md:w-56 md:h-72 lg:w-64 lg:h-80 shadow-xl border-white/60 transition-all duration-500 group-hover:border-amber-200/80" 
+                  className="w-48 md:w-56 lg:w-64 shadow-xl border-white/60 transition-all duration-500 group-hover:border-amber-200/80" 
                 />
               </div>
               

@@ -26,7 +26,7 @@ export function Interests() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen w-full flex flex-col items-center justify-center py-32 bg-slate-900 overflow-hidden text-white">
+    <section ref={containerRef} className="relative w-full flex flex-col items-center justify-center py-24 bg-slate-900 overflow-hidden text-white">
       
       {/* Dynamic Background based on cursor */}
       <motion.div 
