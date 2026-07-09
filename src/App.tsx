@@ -18,6 +18,9 @@ import { Strengths } from './components/Strengths';
 import { Footer } from './components/Footer';
 import { ParticleBackground } from './components/ParticleBackground';
 
+import { LanguageProvider } from './LanguageContext';
+import { LanguageToggle } from './components/LanguageToggle';
+
 function FadeInSection({ children }: { children: React.ReactNode }) {
   return (
     <motion.div
@@ -39,13 +42,13 @@ export default function App() {
   useEffect(() => {
     // Initialize Lenis for smooth scroll
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 2.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 0.8,
+      touchMultiplier: 1.5,
     });
 
     lenisRef.current = lenis;
@@ -63,11 +66,13 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-pearl font-sans text-slate-900 selection:bg-indigo-200 selection:text-indigo-900 overflow-hidden relative">
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-rose-500 origin-left z-[100]"
-        style={{ scaleX: scrollYProgress }}
-      />
+    <LanguageProvider>
+      <div className="bg-pearl font-sans text-slate-900 selection:bg-indigo-200 selection:text-indigo-900 overflow-clip relative">
+        <LanguageToggle />
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-rose-500 origin-left z-[100]"
+          style={{ scaleX: scrollYProgress }}
+        />
       <ParticleBackground />
       <main className="flex flex-col relative z-10">
         <Hero />
@@ -100,6 +105,7 @@ export default function App() {
         </FadeInSection>
       </main>
     </div>
+    </LanguageProvider>
   );
 }
 

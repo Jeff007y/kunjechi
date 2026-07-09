@@ -1,30 +1,41 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mic, HeartHandshake, X, Headphones } from 'lucide-react';
-
-const talents = [
-  {
-    id: 'singing',
-    title: 'Singing',
-    icon: Headphones,
-    color: 'from-rose-100 to-rose-50',
-    blobColor: 'bg-rose-200',
-    description: 'Finding rhythm in every moment and expressing emotions through melodies.',
-    particleType: 'wave'
-  },
-  {
-    id: 'listening',
-    title: 'Listening',
-    icon: HeartHandshake,
-    color: 'from-blue-100 to-blue-50',
-    blobColor: 'bg-blue-200',
-    description: 'Always here to listen to people, understand their problems, and offer a comforting presence.',
-    particleType: 'particle'
-  }
-];
+import { useLanguage } from '../LanguageContext';
 
 export function Talents() {
+  const { language } = useLanguage();
   const [activeTalent, setActiveTalent] = useState<string | null>(null);
+
+  const talents: {
+    id: string;
+    title: string;
+    icon: React.FC<any>;
+    color: string;
+    blobColor: string;
+    description: string;
+    particleType: string;
+    src?: string;
+  }[] = [
+    {
+      id: 'singing',
+      title: language === 'en' ? 'Singing' : 'ആലാപനം',
+      icon: Headphones,
+      color: 'from-rose-100 to-rose-50',
+      blobColor: 'bg-rose-200',
+      description: language === 'en' ? 'Finding rhythm in every moment and expressing emotions through melodies.' : 'ശബ്ദത്തിൽ പുതിയ തലങ്ങൾ തേടുന്നു.',
+      particleType: 'wave'
+    },
+    {
+      id: 'listening',
+      title: language === 'en' ? 'Listening' : 'ശ്രവിക്കൽ',
+      icon: HeartHandshake,
+      color: 'from-blue-100 to-blue-50',
+      blobColor: 'bg-blue-200',
+      description: language === 'en' ? 'Always here to listen to people, understand their problems, and offer a comforting presence.' : 'ആളുകളുമായി ബന്ധം സ്ഥാപിക്കൽ, പ്രശ്നങ്ങൾ മനസ്സിലാക്കൽ.',
+      particleType: 'particle'
+    }
+  ];
 
   return (
     <section className="relative w-full flex flex-col items-center justify-center py-24 bg-pearl overflow-hidden">
@@ -34,7 +45,7 @@ export function Talents() {
         viewport={{ once: true }}
         className="text-4xl md:text-5xl font-serif text-slate-800 mb-16 text-center relative z-20"
       >
-        My Talents
+        {language === 'en' ? "My Talents" : "എന്റെ കഴിവുകൾ"}
       </motion.h2>
 
       <div className="relative w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-16 md:gap-32 h-[400px]">

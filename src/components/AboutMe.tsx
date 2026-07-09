@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MapPin, Calendar } from 'lucide-react';
 import { ImagePlaceholder } from './ImagePlaceholder';
+import { useLanguage } from '../LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,8 +18,29 @@ const keywords = [
 ];
 
 export function AboutMe() {
+  const { language } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
+
+  const keywordsEn = [
+    "Singer",
+    "Listener",
+    "Teacher",
+    "Research Enthusiast",
+    "Dreamer",
+    "Music Lover"
+  ];
+
+  const keywordsMl = [
+    "ഗായിക",
+    "ശ്രോതാവ്",
+    "അദ്ധ്യാപിക",
+    "ഗവേഷണ തൽപര",
+    "സ്വപ്നാടക",
+    "സംഗീത പ്രേമി"
+  ];
+
+  const activeKeywords = language === 'en' ? keywordsEn : keywordsMl;
 
   useEffect(() => {
     if (!textRef.current || !containerRef.current) return;
@@ -42,13 +64,13 @@ export function AboutMe() {
   return (
     <section ref={containerRef} className="relative w-full flex flex-col items-center justify-center py-12 md:py-16 bg-pearl overflow-hidden">
       <h2 ref={textRef} className="text-4xl md:text-6xl font-serif font-medium text-slate-800 mb-4 md:mb-8 z-10">
-        Who am I?
+        {language === 'en' ? "Who am I?" : "ഞാൻ ആരാണ്?"}
       </h2>
 
-      <div className="relative w-full max-w-[20rem] sm:max-w-md md:max-w-lg aspect-square flex items-center justify-center my-4 md:-my-8">
+      <div className="relative w-full max-w-[24rem] sm:max-w-md md:max-w-xl aspect-square flex items-center justify-center my-4 md:-my-8">
         {/* Center Portrait */}
         <motion.div 
-          className="relative z-20 w-48 h-48 md:w-64 md:h-64 rounded-full"
+          className="relative z-20 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.5, type: "spring" }}
         >
@@ -59,10 +81,10 @@ export function AboutMe() {
         <motion.div 
           animate={{ rotate: 360 }}
           transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 z-10"
+          className="absolute inset-0 z-10 hidden sm:block"
         >
-          {keywords.map((word, i) => {
-            const angle = (i * 360) / keywords.length;
+          {activeKeywords.map((word, i) => {
+            const angle = (i * 360) / activeKeywords.length;
             const radius = '45%'; // Responsive radius
             return (
               <div
@@ -80,8 +102,8 @@ export function AboutMe() {
                   transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
                   className="absolute top-0 -translate-y-1/2 flex items-center justify-center"
                 >
-                  <div className="glass-panel px-6 py-3 rounded-full shadow-lg">
-                    <span className="text-sm md:text-base font-sans font-medium tracking-wide text-slate-700 whitespace-nowrap">
+                  <div className="glass-panel px-4 py-2 md:px-6 md:py-3 rounded-full shadow-lg">
+                    <span className="text-xs md:text-base font-sans font-medium tracking-wide text-slate-700 whitespace-nowrap">
                       {word}
                     </span>
                   </div>
@@ -90,6 +112,15 @@ export function AboutMe() {
             );
           })}
         </motion.div>
+      </div>
+      
+      {/* Mobile Keywords List */}
+      <div className="sm:hidden flex flex-wrap justify-center gap-2 mt-4 px-4 relative z-20">
+        {activeKeywords.map(word => (
+          <div key={word} className="glass-panel px-4 py-2 rounded-full shadow-sm bg-white/50 border border-white/20">
+            <span className="text-sm font-sans font-medium text-slate-700">{word}</span>
+          </div>
+        ))}
       </div>
 
       <motion.div

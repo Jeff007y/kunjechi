@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { GraduationCap } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 export function Dream() {
+  const { language } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [showName, setShowName] = useState(false);
   
@@ -44,7 +46,7 @@ export function Dream() {
       {/* Light Rays */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[80vh] bg-[conic-gradient(from_180deg_at_50%_0%,transparent_0deg,rgba(255,255,255,0.05)_180deg,transparent_360deg)] pointer-events-none blur-3xl opacity-50" />
 
-      <div className="sticky top-0 h-screen flex flex-col items-center justify-center w-full">
+      <div className="sticky top-0 h-[100dvh] flex flex-col items-center justify-center w-full">
         
         <motion.div 
           initial={{ y: 50, opacity: 0 }}
@@ -66,7 +68,7 @@ export function Dream() {
                 transition={{ duration: 1 }}
                 className="text-6xl md:text-8xl lg:text-9xl font-serif text-white/50 tracking-tight"
               >
-                My Dream
+                {language === 'en' ? "My Dream" : "എന്റെ സ്വപ്നം"}
               </motion.h2>
             ) : (
               <motion.div

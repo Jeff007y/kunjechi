@@ -2,16 +2,19 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ImagePlaceholder } from './ImagePlaceholder';
 import { GraduationCap } from 'lucide-react';
-
-const education = [
-  { level: '10th', institution: 'St. Thomas AUP School, Mullenkolly', src: 'https://lh3.googleusercontent.com/d/1pI-EFKAmNraGPjZeVBINJV7rb7r1xOo8' },
-  { level: 'Plus Two', institution: "St. Mary's Higher Secondary School, Mullankolly", src: 'https://lh3.googleusercontent.com/d/1vEPE5qNTsOP8Ew1KLYrL2wK7gP5WE6UI' },
-  { level: 'UG', institution: 'St. Thomas College, Ranny', src: 'https://lh3.googleusercontent.com/d/1slJzbD9hRdTD481PX_2mI1oHsWQVolPw' },
-  { level: 'PG', institution: 'St. Thomas College, Kozhencherry', src: 'https://lh3.googleusercontent.com/d/1AYZFVtmwfSNc74-HbeJhChZaj_6Uyaiw' },
-  { level: 'NET Coaching', institution: 'Life Science Academy, Thiruvalla', src: 'https://lh3.googleusercontent.com/d/1pHjuv4WNbkgaofKdsh1L41KDLbd_PJKm' }
-];
+import { useLanguage } from '../LanguageContext';
 
 export function Education() {
+  const { language } = useLanguage();
+
+  const education = [
+    { level: language === 'en' ? '10th' : 'പത്താം ക്ലാസ്', institution: 'St. Thomas AUP School, Mullenkolly', src: 'https://lh3.googleusercontent.com/d/1pI-EFKAmNraGPjZeVBINJV7rb7r1xOo8' },
+    { level: language === 'en' ? 'Plus Two' : 'പ്ലസ് ടു', institution: "St. Mary's Higher Secondary School, Mullankolly", src: 'https://lh3.googleusercontent.com/d/1vEPE5qNTsOP8Ew1KLYrL2wK7gP5WE6UI' },
+    { level: language === 'en' ? 'UG' : 'ബിരുദം (UG)', institution: 'St. Thomas College, Ranny', src: 'https://lh3.googleusercontent.com/d/1slJzbD9hRdTD481PX_2mI1oHsWQVolPw' },
+    { level: language === 'en' ? 'PG' : 'ബിരുദാനന്തര ബിരുദം (PG)', institution: 'St. Thomas College, Kozhencherry', src: 'https://lh3.googleusercontent.com/d/1AYZFVtmwfSNc74-HbeJhChZaj_6Uyaiw' },
+    { level: language === 'en' ? 'NET Coaching' : 'നെറ്റ് കോച്ചിംഗ്', institution: 'Life Science Academy, Thiruvalla', src: 'https://lh3.googleusercontent.com/d/1pHjuv4WNbkgaofKdsh1L41KDLbd_PJKm' }
+  ];
+
   return (
     <section className="relative w-full py-32 bg-slate-50 overflow-hidden">
       {/* Subtle Background Elements */}
@@ -31,7 +34,7 @@ export function Education() {
             <GraduationCap className="w-8 h-8" />
           </div>
           <h2 className="text-4xl md:text-5xl font-serif text-slate-800">
-            Educational Journey
+            {language === 'en' ? "Educational Journey" : "വിദ്യാഭ്യാസ യാത്ര"}
           </h2>
         </motion.div>
 

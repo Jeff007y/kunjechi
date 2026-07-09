@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useAnimation } from 'motion/react';
 import { Headphones, Disc3 } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 export function Interests() {
+  const { language } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -89,7 +91,7 @@ export function Interests() {
           viewport={{ once: true }}
           className="text-4xl md:text-6xl font-serif mb-12 tracking-tight"
         >
-          I Love Listening Music
+          {language === 'en' ? "I Love Listening to Music" : "എനിക്ക് സംഗീതം കേൾക്കാൻ ഇഷ്ടമാണ്"}
         </motion.h2>
 
         {/* Audio Wave Visualizer Simulation */}

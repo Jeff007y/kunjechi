@@ -2,40 +2,44 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { BookOpen, Mic2 } from 'lucide-react';
 import { ImagePlaceholder } from './ImagePlaceholder';
-
-const strengths = [
-  {
-    title: 'Teaching',
-    icon: BookOpen,
-    description: 'Guiding minds, sharing knowledge and illuminating paths to discovery.',
-    bg: 'bg-gradient-to-br from-blue-50 to-indigo-50',
-    accent: 'from-blue-400 to-indigo-500',
-    shadow: 'shadow-blue-900/10',
-    images: [
-      'https://lh3.googleusercontent.com/d/1YKM67DttR-Lstqkx7DghIU9mi2Q7B7dk',
-      'https://lh3.googleusercontent.com/d/1-d9fXDgz9rTEprnYr6RzotZn1JsjTxtM',
-      'https://lh3.googleusercontent.com/d/1DaIOEgSwlKIIS-AyzK9dgTvb2aTUGOHh',
-      'https://lh3.googleusercontent.com/d/1cvVivHxYXKlG5w3rpyr8-6KT-GtFiuQ-',
-      'https://lh3.googleusercontent.com/d/1PIySDw_kTpp3w-sH1PdTi0Vx11zj3M88',
-      'https://lh3.googleusercontent.com/d/1nJ4nIxc8j_Bxxk_-qyHIlkhw26l1f-0N',
-      'https://lh3.googleusercontent.com/d/1ZxmKywxi2YzryyR5qPN6FiSqJ3rPYOzU'
-    ]
-  },
-  {
-    title: 'Singing',
-    icon: Mic2,
-    description: 'Expressing the soul, connecting through melody and creating resonance.',
-    bg: 'bg-gradient-to-br from-rose-50 to-orange-50',
-    accent: 'from-rose-400 to-orange-400',
-    shadow: 'shadow-rose-900/10',
-    images: [
-      'https://lh3.googleusercontent.com/d/1-zk40z0muXsP4hzutBbgFtumkQZ_mwRe'
-    ]
-  }
-];
+import { useLanguage } from '../LanguageContext';
 
 export function Strengths() {
+  const { language } = useLanguage();
   const [activeImageIndex, setActiveImageIndex] = useState<{ [key: string]: number }>({ Teaching: 0, Singing: 0 });
+
+  const strengths = [
+    {
+      titleId: 'Teaching',
+      title: language === 'en' ? 'Teaching' : 'അദ്ധ്യാപനം',
+      icon: BookOpen,
+      description: language === 'en' ? 'Guiding minds, sharing knowledge and illuminating paths to discovery.' : 'മനസ്സുകളെ വഴിനടത്തുന്നു, അറിവ് പങ്കുവെക്കുന്നു.',
+      bg: 'bg-gradient-to-br from-blue-50 to-indigo-50',
+      accent: 'from-blue-400 to-indigo-500',
+      shadow: 'shadow-blue-900/10',
+      images: [
+        'https://lh3.googleusercontent.com/d/1YKM67DttR-Lstqkx7DghIU9mi2Q7B7dk',
+        'https://lh3.googleusercontent.com/d/1-d9fXDgz9rTEprnYr6RzotZn1JsjTxtM',
+        'https://lh3.googleusercontent.com/d/1DaIOEgSwlKIIS-AyzK9dgTvb2aTUGOHh',
+        'https://lh3.googleusercontent.com/d/1cvVivHxYXKlG5w3rpyr8-6KT-GtFiuQ-',
+        'https://lh3.googleusercontent.com/d/1PIySDw_kTpp3w-sH1PdTi0Vx11zj3M88',
+        'https://lh3.googleusercontent.com/d/1nJ4nIxc8j_Bxxk_-qyHIlkhw26l1f-0N',
+        'https://lh3.googleusercontent.com/d/1ZxmKywxi2YzryyR5qPN6FiSqJ3rPYOzU'
+      ]
+    },
+    {
+      titleId: 'Singing',
+      title: language === 'en' ? 'Singing' : 'ആലാപനം',
+      icon: Mic2,
+      description: language === 'en' ? 'Expressing the soul, connecting through melody and creating resonance.' : 'ആത്മാവിനെ ആവിഷ്കരിക്കുന്നു, സംഗീതത്തിലൂടെ ബന്ധം സ്ഥാപിക്കുന്നു.',
+      bg: 'bg-gradient-to-br from-rose-50 to-orange-50',
+      accent: 'from-rose-400 to-orange-400',
+      shadow: 'shadow-rose-900/10',
+      images: [
+        'https://lh3.googleusercontent.com/d/1-zk40z0muXsP4hzutBbgFtumkQZ_mwRe'
+      ]
+    }
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -43,14 +47,14 @@ export function Strengths() {
         const next = { ...prev };
         strengths.forEach(strength => {
           if (strength.images && strength.images.length > 0) {
-            next[strength.title] = (prev[strength.title] + 1) % strength.images.length;
+            next[strength.titleId] = (prev[strength.titleId] + 1) % strength.images.length;
           }
         });
         return next;
       });
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [strengths]);
 
   return (
     <section className="relative w-full flex flex-col items-center justify-center py-24 bg-pearl overflow-hidden perspective-1000">
@@ -61,13 +65,13 @@ export function Strengths() {
         viewport={{ once: true }}
         className="text-4xl md:text-5xl font-serif text-slate-800 mb-16 text-center"
       >
-        What I'm Good At
+        {language === 'en' ? "What I'm Good At" : "എന്റെ പ്രധാന കരുത്തുകൾ"}
       </motion.h2>
 
       <div className="w-full max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
         {strengths.map((item, i) => (
           <motion.div
-            key={item.title}
+            key={item.titleId}
             initial={{ opacity: 0, y: 50, rotateX: 10 }}
             whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -83,8 +87,8 @@ export function Strengths() {
               <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-40 transition-opacity duration-700">
                  <AnimatePresence mode="wait">
                    <motion.img 
-                     key={activeImageIndex[item.title]}
-                     src={item.images[activeImageIndex[item.title]]}
+                     key={activeImageIndex[item.titleId]}
+                     src={item.images[activeImageIndex[item.titleId]]}
                      initial={{ opacity: 0 }}
                      animate={{ opacity: 1 }}
                      exit={{ opacity: 0 }}
@@ -108,8 +112,8 @@ export function Strengths() {
                   <div className="relative w-48 md:w-64 lg:w-80 shrink-0 ml-4 perspective-1000">
                     <AnimatePresence mode="wait">
                        <motion.img 
-                         key={activeImageIndex[item.title]}
-                         src={item.images[activeImageIndex[item.title]]}
+                         key={activeImageIndex[item.titleId]}
+                         src={item.images[activeImageIndex[item.titleId]]}
                          initial={{ opacity: 0, rotateY: 10, scale: 0.95 }}
                          animate={{ opacity: 1, rotateY: 0, scale: 1 }}
                          exit={{ opacity: 0, rotateY: -10, scale: 0.95 }}

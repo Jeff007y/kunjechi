@@ -1,13 +1,24 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ImagePlaceholder } from './ImagePlaceholder';
-
-const family = [
-  { name: 'Acha & Amma', role: 'Parents', src: 'https://lh3.googleusercontent.com/d/1YN4p3Vbzu_eAboAXCf90HlgQBPKKNUau' },
-  { name: 'Nandhu', role: 'Sister', src: 'https://lh3.googleusercontent.com/d/1yKMe2nWJWWYy4WYmjDJmNo5e3H4CEyPa' }
-];
+import { useLanguage } from '../LanguageContext';
 
 export function Family() {
+  const { language } = useLanguage();
+  
+  const family = [
+    { 
+      name: language === 'en' ? 'Acha & Amma' : 'അച്ഛൻ & അമ്മ', 
+      role: language === 'en' ? 'Parents' : 'മാതാപിതാക്കൾ', 
+      src: 'https://lh3.googleusercontent.com/d/1YN4p3Vbzu_eAboAXCf90HlgQBPKKNUau' 
+    },
+    { 
+      name: language === 'en' ? 'Nandhu' : 'നന്ദു', 
+      role: language === 'en' ? 'Sister' : 'സഹോദരി', 
+      src: 'https://lh3.googleusercontent.com/d/1yKMe2nWJWWYy4WYmjDJmNo5e3H4CEyPa' 
+    }
+  ];
+
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -19,7 +30,7 @@ export function Family() {
   return (
     <section 
       ref={containerRef} 
-      className="relative min-h-screen w-full flex flex-col items-center justify-center py-24 overflow-hidden bg-gradient-to-b from-pearl via-amber-50/50 to-orange-50/30"
+      className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center py-24 overflow-hidden bg-gradient-to-b from-pearl via-amber-50/50 to-orange-50/30"
     >
       <motion.div 
         style={{ y: backgroundY }}
@@ -34,7 +45,7 @@ export function Family() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="text-4xl md:text-5xl font-serif text-slate-800 mb-16"
         >
-          The People Behind My Journey
+          {language === 'en' ? "The People Behind My Journey" : "എന്റെ യാത്രക്ക് പിന്നിലെ വ്യക്തികൾ"}
         </motion.h2>
 
         <div className="relative flex flex-col md:flex-row items-center justify-center gap-16 md:gap-8 lg:gap-24">

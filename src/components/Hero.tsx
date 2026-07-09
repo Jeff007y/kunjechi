@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { useLanguage } from '../LanguageContext';
 
 export function Hero() {
+  const { language } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -14,7 +16,7 @@ export function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50"
+      className="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-purple-50"
     >
       {/* Background Orbs */}
       <motion.div 
@@ -65,7 +67,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-lg md:text-xl font-medium tracking-wide text-slate-500 mb-2"
         >
-          Hello, I'm
+          {language === 'en' ? "Hello, I'm" : "നമസ്കാരം, ഞാൻ"}
         </motion.p>
 
         <motion.h1
@@ -74,7 +76,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-slate-800 tracking-tight mb-6"
         >
-          Keerthana Sunil
+          {language === 'en' ? "Keerthana Sunil" : "കീർത്തന സുനിൽ"}
         </motion.h1>
 
         <motion.div
@@ -83,13 +85,13 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 1 }}
           className="flex flex-wrap items-center justify-center gap-2 md:gap-4 text-sm md:text-base text-slate-600 font-sans tracking-widest uppercase"
         >
-          <span>Singer</span>
+          <span>{language === 'en' ? "Singer" : "ഗായിക"}</span>
           <span className="text-indigo-300">•</span>
-          <span>Learner</span>
+          <span>{language === 'en' ? "Learner" : "വിദ്യാർത്ഥി"}</span>
           <span className="text-indigo-300">•</span>
-          <span>Teacher</span>
+          <span>{language === 'en' ? "Teacher" : "അദ്ധ്യാപിക"}</span>
           <span className="text-indigo-300">•</span>
-          <span>Future Researcher</span>
+          <span>{language === 'en' ? "Future Researcher" : "ഭാവി ഗവേഷക"}</span>
         </motion.div>
       </motion.div>
       
@@ -99,7 +101,7 @@ export function Hero() {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400"
       >
-        <span className="text-xs tracking-widest uppercase">Scroll to Discover</span>
+        <span className="text-xs tracking-widest uppercase">{language === 'en' ? "Scroll to Discover" : "താഴേക്ക് സ്ക്രോൾ ചെയ്യുക"}</span>
         <motion.div 
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}

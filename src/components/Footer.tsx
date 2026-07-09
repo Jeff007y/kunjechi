@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ImagePlaceholder } from './ImagePlaceholder';
+import { useLanguage } from '../LanguageContext';
 
 export function Footer() {
+  const { language } = useLanguage();
   return (
     <section className="relative min-h-[70vh] w-full flex flex-col items-center justify-center py-24 bg-dark-bg text-white overflow-hidden">
       
@@ -33,7 +35,7 @@ export function Footer() {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-4xl md:text-5xl font-serif text-white mb-6"
         >
-          Thank You
+          {language === 'en' ? "Thank You" : "നന്ദി"}
         </motion.h2>
 
         <motion.p 

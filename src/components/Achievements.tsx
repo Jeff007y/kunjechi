@@ -2,28 +2,30 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Award, X, Sparkles } from 'lucide-react';
 import { ImagePlaceholder } from './ImagePlaceholder';
-
-const achievements = [
-  {
-    id: 'aspire',
-    title: 'Aspire Research Award',
-    description: 'Recognized for outstanding potential and dedication to advancing research in the field.',
-    icon: Award,
-    color: 'from-amber-200 to-yellow-500',
-    src: 'https://lh3.googleusercontent.com/d/1GeAq0p4MtNsH8gN6PGY2hFAAySaZ7hQh'
-  },
-  {
-    id: 'icar',
-    title: 'ICAR JRF - AIR 26',
-    description: 'Achieved All India Rank 26 in the highly competitive ICAR Junior Research Fellowship examination.',
-    icon: Sparkles,
-    color: 'from-slate-300 to-slate-100',
-    src: 'https://lh3.googleusercontent.com/d/1FQLtG-n-mT5rKn86ooBpXIhfaW1m_m_C'
-  }
-];
+import { useLanguage } from '../LanguageContext';
 
 export function Achievements() {
+  const { language } = useLanguage();
   const [activeId, setActiveId] = useState<string | null>(null);
+
+  const achievements = [
+    {
+      id: 'aspire',
+      title: 'Aspire Research Award',
+      description: language === 'en' ? 'Recognized for outstanding potential and dedication to advancing research in the field.' : 'ഗവേഷണ മേഖലയിലെ മികച്ച സംഭാവനകൾക്കുള്ള അംഗീകാരം.',
+      icon: Award,
+      color: 'from-amber-200 to-yellow-500',
+      src: 'https://lh3.googleusercontent.com/d/1GeAq0p4MtNsH8gN6PGY2hFAAySaZ7hQh'
+    },
+    {
+      id: 'icar',
+      title: 'ICAR JRF - AIR 26',
+      description: language === 'en' ? 'Achieved All India Rank 26 in the highly competitive ICAR Junior Research Fellowship examination.' : 'ICAR JRF പരീക്ഷയിൽ അഖിലേന്ത്യാ തലത്തിൽ 26-ാം റാങ്ക്.',
+      icon: Sparkles,
+      color: 'from-slate-300 to-slate-100',
+      src: 'https://lh3.googleusercontent.com/d/1FQLtG-n-mT5rKn86ooBpXIhfaW1m_m_C'
+    }
+  ];
 
   return (
     <section className="relative w-full flex flex-col items-center justify-center py-24 bg-dark-bg text-white overflow-hidden perspective-1000">
@@ -38,7 +40,7 @@ export function Achievements() {
         viewport={{ once: true }}
         className="text-4xl md:text-5xl font-serif mb-16 z-20 text-center"
       >
-        Achievements & Awards
+        {language === 'en' ? "Achievements & Awards" : "നേട്ടങ്ങളും അംഗീകാരങ്ങളും"}
       </motion.h2>
 
       <div className="relative w-full max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-16 md:gap-32 h-full z-10">
