@@ -12,7 +12,7 @@ export function Education() {
     { level: language === 'en' ? 'Plus Two' : 'പ്ലസ് ടു', institution: "St. Mary's Higher Secondary School, Mullankolly", src: 'https://lh3.googleusercontent.com/d/1vEPE5qNTsOP8Ew1KLYrL2wK7gP5WE6UI' },
     { level: language === 'en' ? 'UG' : 'ബിരുദം (UG)', institution: 'St. Thomas College, Ranny', src: 'https://lh3.googleusercontent.com/d/1slJzbD9hRdTD481PX_2mI1oHsWQVolPw' },
     { level: language === 'en' ? 'PG' : 'ബിരുദാനന്തര ബിരുദം (PG)', institution: 'St. Thomas College, Kozhencherry', src: 'https://lh3.googleusercontent.com/d/1AYZFVtmwfSNc74-HbeJhChZaj_6Uyaiw' },
-    { level: language === 'en' ? 'NET Coaching' : 'നെറ്റ് കോച്ചിംഗ്', institution: 'Life Science Academy, Thiruvalla', src: 'https://lh3.googleusercontent.com/d/1pHjuv4WNbkgaofKdsh1L41KDLbd_PJKm' }
+    { level: language === 'en' ? 'NET Coaching' : 'നെറ്റ് കോച്ചിംഗ്', institution: 'Life Science Academy, Thiruvalla', src: 'https://lh3.googleusercontent.com/d/1Dayhjnxzguj12RRShKzcbdpI06MUbVQt' }
   ];
 
   return (

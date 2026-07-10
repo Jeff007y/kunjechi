@@ -13,6 +13,7 @@ import { Talents } from './components/Talents';
 import { Education } from './components/Education';
 import { Achievements } from './components/Achievements';
 import { Dream } from './components/Dream';
+import { GuidingLights } from './components/GuidingLights';
 import { Interests } from './components/Interests';
 import { Strengths } from './components/Strengths';
 import { Footer } from './components/Footer';
@@ -93,6 +94,9 @@ export default function App() {
         </FadeInSection>
         <FadeInSection>
           <Dream />
+        </FadeInSection>
+        <FadeInSection>
+          <GuidingLights />
         </FadeInSection>
         <FadeInSection>
           <Interests />
