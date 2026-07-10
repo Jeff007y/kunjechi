@@ -49,7 +49,7 @@ export function Strengths() {
       accent: 'from-emerald-400 to-teal-500',
       shadow: 'shadow-emerald-900/10',
       images: [
-        'https://lh3.googleusercontent.com/d/1Dayhjnxzguj12RRShKzcbdpI06MUbVQt'
+        'https://lh3.googleusercontent.com/d/1_AEgZB9IolCDb2pADrDAjTE1FS9R1ptP'
       ]
     }
   ];
