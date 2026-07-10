@@ -16,6 +16,11 @@ export function Family() {
       name: language === 'en' ? 'Nandhu' : 'നന്ദു', 
       role: language === 'en' ? 'Sister' : 'സഹോദരി', 
       src: 'https://lh3.googleusercontent.com/d/1yKMe2nWJWWYy4WYmjDJmNo5e3H4CEyPa' 
+    },
+    { 
+      name: language === 'en' ? 'Unni & Thanu' : 'ഉണ്ണി & തനു', 
+      role: language === 'en' ? 'Cousins' : 'കസിൻസ്', 
+      src: 'https://lh3.googleusercontent.com/d/17s5NYsqGttIiZneXfJVc70WitlUk9RDu' 
     }
   ];
 

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { BookOpen, Mic2, MessageCircle } from 'lucide-react';
+import { BookOpen, Mic2, MessageCircle, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImagePlaceholder } from './ImagePlaceholder';
 import { useLanguage } from '../LanguageContext';
 
 export function Strengths() {
   const { language } = useLanguage();
   const [activeImageIndex, setActiveImageIndex] = useState<{ [key: string]: number }>({ Teaching: 0, Singing: 0, Speaking: 0 });
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const strengths = [
     {
@@ -47,7 +48,9 @@ export function Strengths() {
       bg: 'bg-gradient-to-br from-emerald-50 to-teal-50',
       accent: 'from-emerald-400 to-teal-500',
       shadow: 'shadow-emerald-900/10',
-      images: []
+      images: [
+        'https://lh3.googleusercontent.com/d/1Dayhjnxzguj12RRShKzcbdpI06MUbVQt'
+      ]
     }
   ];
 
@@ -94,7 +97,7 @@ export function Strengths() {
 
             {/* Fading Image Background for categories with images */}
             {item.images && item.images.length > 0 && (
-              <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-40 transition-opacity duration-700">
+              <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none">
                  <AnimatePresence mode="wait">
                    <motion.img 
                      key={activeImageIndex[item.titleId]}
@@ -112,14 +115,14 @@ export function Strengths() {
             )}
 
             <div className="relative z-10 flex flex-col items-start h-full">
-              <div className="flex w-full items-start justify-between mb-8">
-                <div className="p-4 rounded-2xl bg-white/50 backdrop-blur-sm border border-white shadow-sm group-hover:scale-110 transition-transform duration-500">
+              <div className="flex w-full items-start justify-between mb-8 gap-4">
+                <div className="p-4 rounded-2xl bg-white/50 backdrop-blur-sm border border-white shadow-sm group-hover:scale-110 transition-transform duration-500 shrink-0">
                   <item.icon className="w-10 h-10 text-slate-700" />
                 </div>
                 
                 {/* Image Preview */}
                 {item.images && item.images.length > 0 && (
-                  <div className="relative w-48 md:w-64 lg:w-80 shrink-0 ml-4 perspective-1000">
+                  <div className="relative w-full max-w-[160px] md:max-w-[220px] perspective-1000 shrink cursor-zoom-in" onClick={(e) => { e.stopPropagation(); setSelectedCategory(item.titleId); }}>
                     <AnimatePresence mode="wait">
                        <motion.img 
                          key={activeImageIndex[item.titleId]}
@@ -128,7 +131,7 @@ export function Strengths() {
                          animate={{ opacity: 1, rotateY: 0, scale: 1 }}
                          exit={{ opacity: 0, rotateY: -10, scale: 0.95 }}
                          transition={{ duration: 0.8 }}
-                         className="w-full h-auto object-contain drop-shadow-2xl rounded-xl block"
+                         className="w-full h-auto max-h-32 md:max-h-48 object-contain drop-shadow-2xl rounded-xl block group-hover:scale-105 transition-transform duration-300"
                          referrerPolicy="no-referrer"
                        />
                      </AnimatePresence>
@@ -155,6 +158,93 @@ export function Strengths() {
           </motion.div>
         ))}
       </div>
+
+      <AnimatePresence>
+        {selectedCategory && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCategory(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/80 backdrop-blur-md cursor-zoom-out"
+          >
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="relative max-w-full max-h-full flex items-center"
+            >
+              <button 
+                onClick={() => setSelectedCategory(null)}
+                className="absolute -top-12 right-0 p-2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-colors z-10"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              {(() => {
+                const item = strengths.find(s => s.titleId === selectedCategory);
+                if (!item || !item.images || item.images.length === 0) return null;
+                const hasMultiple = item.images.length > 1;
+
+                const nextImage = (e: React.MouseEvent) => {
+                  e.stopPropagation();
+                  setActiveImageIndex(prev => ({
+                    ...prev,
+                    [selectedCategory]: (prev[selectedCategory] + 1) % item.images.length
+                  }));
+                };
+
+                const prevImage = (e: React.MouseEvent) => {
+                  e.stopPropagation();
+                  setActiveImageIndex(prev => ({
+                    ...prev,
+                    [selectedCategory]: (prev[selectedCategory] - 1 + item.images.length) % item.images.length
+                  }));
+                };
+
+                return (
+                  <>
+                    {hasMultiple && (
+                      <button 
+                        onClick={prevImage}
+                        className="absolute left-4 md:-left-16 p-3 text-white/70 hover:text-white bg-black/50 hover:bg-black/70 rounded-full transition-colors z-10"
+                      >
+                        <ChevronLeft className="w-8 h-8" />
+                      </button>
+                    )}
+                    
+                    <div className="relative overflow-hidden rounded-xl shadow-2xl">
+                       <AnimatePresence mode="wait">
+                         <motion.img 
+                           key={activeImageIndex[selectedCategory]}
+                           src={item.images[activeImageIndex[selectedCategory]]}
+                           initial={{ opacity: 0, x: 20 }}
+                           animate={{ opacity: 1, x: 0 }}
+                           exit={{ opacity: 0, x: -20 }}
+                           transition={{ duration: 0.3 }}
+                           alt="Enlarged view"
+                           className="max-w-full max-h-[85vh] object-contain block"
+                           referrerPolicy="no-referrer"
+                           onClick={(e) => e.stopPropagation()}
+                         />
+                       </AnimatePresence>
+                    </div>
+
+                    {hasMultiple && (
+                      <button 
+                        onClick={nextImage}
+                        className="absolute right-4 md:-right-16 p-3 text-white/70 hover:text-white bg-black/50 hover:bg-black/70 rounded-full transition-colors z-10"
+                      >
+                        <ChevronRight className="w-8 h-8" />
+                      </button>
+                    )}
+                  </>
+                );
+              })()}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
