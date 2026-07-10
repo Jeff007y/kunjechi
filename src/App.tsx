@@ -83,10 +83,10 @@ export default function App() {
           <Family />
         </FadeInSection>
         <FadeInSection>
-          <Talents />
+          <Education />
         </FadeInSection>
         <FadeInSection>
-          <Education />
+          <Talents />
         </FadeInSection>
         <FadeInSection>
           <Achievements />

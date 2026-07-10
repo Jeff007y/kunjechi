@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { BookOpen, Mic2 } from 'lucide-react';
+import { BookOpen, Mic2, MessageCircle } from 'lucide-react';
 import { ImagePlaceholder } from './ImagePlaceholder';
 import { useLanguage } from '../LanguageContext';
 
 export function Strengths() {
   const { language } = useLanguage();
-  const [activeImageIndex, setActiveImageIndex] = useState<{ [key: string]: number }>({ Teaching: 0, Singing: 0 });
+  const [activeImageIndex, setActiveImageIndex] = useState<{ [key: string]: number }>({ Teaching: 0, Singing: 0, Speaking: 0 });
 
   const strengths = [
     {
@@ -38,6 +38,16 @@ export function Strengths() {
       images: [
         'https://lh3.googleusercontent.com/d/1-zk40z0muXsP4hzutBbgFtumkQZ_mwRe'
       ]
+    },
+    {
+      titleId: 'Speaking',
+      title: language === 'en' ? 'Speaking' : 'പ്രസംഗം',
+      icon: MessageCircle,
+      description: language === 'en' ? 'Communicating ideas clearly and inspiring others through words.' : 'ആശയങ്ങൾ വ്യക്തമായി ആശയവിനിമയം നടത്തുകയും വാക്കുകളിലൂടെ മറ്റുള്ളവരെ പ്രചോദിപ്പിക്കുകയും ചെയ്യുന്നു.',
+      bg: 'bg-gradient-to-br from-emerald-50 to-teal-50',
+      accent: 'from-emerald-400 to-teal-500',
+      shadow: 'shadow-emerald-900/10',
+      images: []
     }
   ];
 
@@ -68,7 +78,7 @@ export function Strengths() {
         {language === 'en' ? "What I'm Good At" : "എന്റെ പ്രധാന കരുത്തുകൾ"}
       </motion.h2>
 
-      <div className="w-full max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+      <div className="w-full max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
         {strengths.map((item, i) => (
           <motion.div
             key={item.titleId}

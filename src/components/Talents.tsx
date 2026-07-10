@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mic, HeartHandshake, X, Headphones } from 'lucide-react';
+import { Mic, HeartHandshake, X, Headphones, Users, Heart } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 export function Talents() {
@@ -34,6 +34,24 @@ export function Talents() {
       blobColor: 'bg-blue-200',
       description: language === 'en' ? 'Always here to listen to people, understand their problems, and offer a comforting presence.' : 'ആളുകളുമായി ബന്ധം സ്ഥാപിക്കൽ, പ്രശ്നങ്ങൾ മനസ്സിലാക്കൽ.',
       particleType: 'particle'
+    },
+    {
+      id: 'leadership',
+      title: language === 'en' ? 'Leadership' : 'നേതൃത്വം',
+      icon: Users,
+      color: 'from-amber-100 to-amber-50',
+      blobColor: 'bg-amber-200',
+      description: language === 'en' ? 'Guiding others with clear vision and leading by example.' : 'വ്യക്തമായ കാഴ്ചപ്പാടോടെ മറ്റുള്ളവരെ നയിക്കുകയും മാതൃകയാവുകയും ചെയ്യുന്നു.',
+      particleType: 'particle'
+    },
+    {
+      id: 'empathetic',
+      title: language === 'en' ? 'Empathetic' : 'സഹാനുഭൂതി',
+      icon: Heart,
+      color: 'from-teal-100 to-teal-50',
+      blobColor: 'bg-teal-200',
+      description: language === 'en' ? 'Understanding perspectives and offering a compassionate presence.' : 'മറ്റുള്ളവരുടെ വീക്ഷണങ്ങൾ മനസ്സിലാക്കുകയും അനുകമ്പയോടെ സമീപിക്കുകയും ചെയ്യുന്നു.',
+      particleType: 'wave'
     }
   ];
 
@@ -48,7 +66,7 @@ export function Talents() {
         {language === 'en' ? "My Talents" : "എന്റെ കഴിവുകൾ"}
       </motion.h2>
 
-      <div className="relative w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-16 md:gap-32 h-[400px]">
+      <div className="relative w-full max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-12 md:gap-16 min-h-[400px] py-10 md:py-0">
         {talents.map((talent, i) => {
           const isActive = activeTalent === talent.id;
           const isFaded = activeTalent && !isActive;
